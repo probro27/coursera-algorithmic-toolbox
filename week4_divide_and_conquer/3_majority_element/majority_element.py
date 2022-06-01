@@ -17,15 +17,13 @@ def get_majority_element(a, left, right):
     mid = (left + right) // 2
     left_majority = get_majority_element(a, left, mid)
     right_majority = get_majority_element(a, mid + 1, right)
-    print(f"left_majority: {left_majority}, right_majority: {right_majority}, mid: {mid}")
     left_count = countFrequency(a, left_majority, left, right)
     right_count = countFrequency(a, right_majority, left, right)
-    print(f"left_count: {left_count}, right_count: {right_count}")
     if left_majority == right_majority:
         return left_majority
-    if left_count > mid:
+    if left_count > (right - left + 1) // 2:
         return left_majority
-    if right_count > mid:
+    if right_count > (right - left + 1) // 2:
         return right_majority
     return -1
 
